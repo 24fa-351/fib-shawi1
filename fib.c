@@ -1,26 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Iterative Fibonacci function
-int fibonacci_iterative(int n)
+unsigned long long int fibonacci_iterative(int n)
 {
    if (n == 1)
       return 0; // Special case: F(1) = 0
    if (n == 2)
       return 1; // Special case: F(2) = 1
 
-   int a = 0, b = 1, temp;
+   unsigned long long int a = 0, b = 1, temp;
    for (int i = 3; i <= n; i++)
    {
       temp = a + b;
       a = b;
       b = temp;
    }
-   return b; // Return 'b', which corresponds to F(n)
+   return b;
 }
 
-// Recursive Fibonacci function
-int fibonacci_recursive(int n)
+unsigned long long int fibonacci_recursive(int n)
 {
    if (n == 1)
       return 0; // Special case: F(1) = 0
@@ -42,7 +40,6 @@ int main(int argc, char *argv[])
    char method = argv[2][0];
    char *filename = argv[3];
 
-   // Open the file and read the integer
    FILE *file = fopen(filename, "r");
    if (file == NULL)
    {
@@ -54,11 +51,10 @@ int main(int argc, char *argv[])
    fscanf(file, "%d", &file_num);
    fclose(file);
 
-   // Add the input number and the file number to compute N
    int N = input_num + file_num;
 
-   // Compute the Fibonacci number based on N
-   int result;
+   unsigned long long int result;
+
    if (method == 'i')
    {
       result = fibonacci_iterative(N);
@@ -73,8 +69,7 @@ int main(int argc, char *argv[])
       return 1;
    }
 
-   // Output only the Fibonacci number
-   printf("%d\n", result);
+   printf("%llu\n", result);
 
    return 0;
 }
